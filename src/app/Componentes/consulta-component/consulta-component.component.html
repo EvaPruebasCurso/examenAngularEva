@@ -1,0 +1,49 @@
+
+
+<div class="container-fluid"> 
+    <div class="row mt-5">
+      <div class="col-10">
+        <div class="row ">
+          <div class="col-6 offset-3"><h2>¿Qué empleado quieres buscar?</h2></div>
+       </div>
+       </div>
+    </div> <!-- Fin fila-->
+      <div class="row mt-5 offset-2">
+      <div class="col-10">
+        <form class="form-group" (submit)="consulta(IPC)" #formu="ngForm"> 
+            <label for="IPC">IPC:</label>
+            <input class="form-control" type="number" autocomplete="off" name="IPC" id="IPC" [(ngModel)]="IPC">
+            <label  for="id">Id del empleado:</label>
+            <input class="form-control" type="text" autocomplete="off" name="id" id="id" required [(ngModel)]="empleado.id" #id="ngModel"> 
+            
+            <div class="alert alert-danger" *ngIf="id.invalid && (id.dirty || id.touched)"> 
+            <div *ngIf="id.errors.required">El id es obligatorio</div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!formu.form.valid">Enviar</button>
+        </form>
+        
+        <br>
+        <table *ngIf="empleado!=null" class="table table-bordered table-dark">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">NOMBRE EMPLEADO</th>
+              <th scope="col">SALARIO EMPLEADO SIN IPC</th>
+              <th scope="col">SALARIO EMPLEADO POR IPC</th>
+              <th scope="col">EDAD EMPLEADO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{empleado.id}}</th>
+              <td>{{empleado.employee_name}}</td>
+              <td>{{empleado.employee_salary}}</td>
+              <td>{{resultado}}</td>
+              <td>{{empleado.employee_age}}</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      </div>
+  </div> <!-- Fin contenedor-->
